@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- C:\Users\WINDOWS\AppData\Local\Temp\xcAsfac.\driver_tmp_3.obj
+ C:\Users\WINDOWS\AppData\Local\Temp\xcAsc14.\driver_tmp_3.obj
  -Opic18F4580.hex
  -logfile=pic18F4580.hxl
  -addressing=1
@@ -9,17 +9,17 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(C:\Users\WINDOWS\AppData\Local\Temp\xcAsfac.\driver_tmp_3.obj)
-  8h - 26F3h		(C:\Users\WINDOWS\AppData\Local\Temp\xcAsfac.\driver_tmp_3.obj)
-  2E5Ch - 2FFFh		(C:\Users\WINDOWS\AppData\Local\Temp\xcAsfac.\driver_tmp_3.obj)
+  0h - 3h		(C:\Users\WINDOWS\AppData\Local\Temp\xcAsc14.\driver_tmp_3.obj)
+  8h - 26E5h		(C:\Users\WINDOWS\AppData\Local\Temp\xcAsc14.\driver_tmp_3.obj)
+  2E5Ch - 2FFFh		(C:\Users\WINDOWS\AppData\Local\Temp\xcAsc14.\driver_tmp_3.obj)
  Unused ranges:
   4h - 7h
-  26F4h - 2E5Bh
+  26E6h - 2E5Bh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (C:\Users\WINDOWS\AppData\Local\Temp\xcAsfac.\driver_tmp_3.obj)
+  H1 = Input file             (C:\Users\WINDOWS\AppData\Local\Temp\xcAsc14.\driver_tmp_3.obj)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
@@ -645,8 +645,7 @@
 000026B0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000026C0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000026D0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000026E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000026F0 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
+000026E0 | H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 00002E50 | -- -- -- -- -- -- -- -- -- -- -- -- H1 H1 H1 H1
 00002E60 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1

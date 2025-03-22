@@ -11,10 +11,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _key `uc ~T0 @X0 0 e ]
 "39 clcd.h
 [v _clcd_putch `(v ~T0 @X0 0 ef2`Cuc`uc ]
-"24 main.h
-[v _store_events `(v ~T0 @X0 0 ef4`i`i`i`i ]
 "9 set_event.c
 [v _screen_flag `uc ~T0 @X0 0 e ]
+"24 main.h
+[v _store_events `(v ~T0 @X0 0 ef4`i`i`i`i ]
 "7 eeprom.h
 [v _write_24c02 `(v ~T0 @X0 0 ef2`uc`uc ]
 "8
@@ -11871,29 +11871,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 "100
 [e $ ! < -> _event_cnt `i -> 40 `i 1106  ]
 {
-[; ;set_event.c: 101: event_cnt++;
+[; ;set_event.c: 101: screen_flag = 4;
 "101
-[e ++ _event_cnt -> -> 1 `i `uc ]
-[; ;set_event.c: 102: store_events(event_cnt, hr, mn, am_pm);
-"102
-[e ( _store_events (4 , , , -> _event_cnt `i -> _hr `i -> _mn `i -> _am_pm `i ]
-[; ;set_event.c: 103: screen_flag = 4;
-"103
 [e = _screen_flag -> -> 4 `i `uc ]
+[; ;set_event.c: 102: event_cnt++;
+"102
+[e ++ _event_cnt -> -> 1 `i `uc ]
+[; ;set_event.c: 103: store_events(event_cnt, hr, mn, am_pm);
+"103
+[e ( _store_events (4 , , , -> _event_cnt `i -> _hr `i -> _mn `i -> _am_pm `i ]
+[; ;set_event.c: 104: screen_flag = 4;
 "104
+[e = _screen_flag -> -> 4 `i `uc ]
+"105
 }
-[; ;set_event.c: 104: } else {
+[; ;set_event.c: 105: } else {
 [e $U 1107  ]
 [e :U 1106 ]
 {
-[; ;set_event.c: 105: clcd_print("                ", (0x80 + (0)));
-"105
-[e ( _clcd_print (2 , :s 8C -> + -> 128 `i -> 0 `i `uc ]
-[; ;set_event.c: 106: clcd_print("Event Limit Reached", (0xC0 + (0)));
+[; ;set_event.c: 106: clcd_print("                ", (0x80 + (0)));
 "106
-[e ( _clcd_print (2 , :s 9C -> + -> 192 `i -> 0 `i `uc ]
-[; ;set_event.c: 107: for (int i = 0; i < 5000; i++);
+[e ( _clcd_print (2 , :s 8C -> + -> 128 `i -> 0 `i `uc ]
+[; ;set_event.c: 107: clcd_print("Event Limit Reached", (0xC0 + (0)));
 "107
+[e ( _clcd_print (2 , :s 9C -> + -> 192 `i -> 0 `i `uc ]
+[; ;set_event.c: 108: for (int i = 0; i < 5000; i++);
+"108
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -11904,283 +11907,280 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < _i -> 5000 `i 1108  ]
 [e :U 1109 ]
 }
-"108
-}
-[e :U 1107 ]
 "109
 }
+[e :U 1107 ]
+"110
+}
 [e :U 1105 ]
-[; ;set_event.c: 108: }
 [; ;set_event.c: 109: }
-[; ;set_event.c: 111: if (key == 5) {
-"111
+[; ;set_event.c: 110: }
+[; ;set_event.c: 112: if (key == 5) {
+"112
 [e $ ! == -> _key `i -> 5 `i 1111  ]
 {
-[; ;set_event.c: 112: screen_flag = 4;
-"112
-[e = _screen_flag -> -> 4 `i `uc ]
+[; ;set_event.c: 113: screen_flag = 4;
 "113
+[e = _screen_flag -> -> 4 `i `uc ]
+"114
 }
 [e :U 1111 ]
-[; ;set_event.c: 113: }
 [; ;set_event.c: 114: }
-"114
+[; ;set_event.c: 115: }
+"115
 [e :UE 1083 ]
 }
-"199
+"200
 [v _store_events `(v ~T0 @X0 1 ef4`i`i`i`i ]
 {
-[; ;set_event.c: 199: void store_events(int event_cnt, int hour, int min, int am_pm) {
+[; ;set_event.c: 200: void store_events(int event_cnt, int hour, int min, int am_pm) {
 [e :U _store_events ]
 [v _event_cnt `i ~T0 @X0 1 r1 ]
 [v _hour `i ~T0 @X0 1 r2 ]
 [v _min `i ~T0 @X0 1 r3 ]
 [v _am_pm `i ~T0 @X0 1 r4 ]
 [f ]
-"200
-[v _addr `uc ~T0 @X0 1 a ]
-[; ;set_event.c: 200: char addr = 0x00;
-[e = _addr -> -> 0 `i `uc ]
 "201
+[v _addr `uc ~T0 @X0 1 a ]
+[; ;set_event.c: 201: char addr = 0x00;
+[e = _addr -> -> 0 `i `uc ]
+"202
 [v _a_p `i ~T0 @X0 1 a ]
 [v _hr `i ~T0 @X0 1 a ]
 [v _mn `i ~T0 @X0 1 a ]
-"202
-[v _flag `i ~T0 @X0 1 a ]
-[; ;set_event.c: 201: int a_p, hr, mn;
-[; ;set_event.c: 202: int flag = 1;
-[e = _flag -> 1 `i ]
 "203
+[v _flag `i ~T0 @X0 1 a ]
+[; ;set_event.c: 202: int a_p, hr, mn;
+[; ;set_event.c: 203: int flag = 1;
+[e = _flag -> 1 `i ]
+"204
 [v _i `i ~T0 @X0 1 a ]
-[; ;set_event.c: 203: int i = 0;
+[; ;set_event.c: 204: int i = 0;
 [e = _i -> 0 `i ]
-[; ;set_event.c: 205: if (event_cnt == 1) {
-"205
+[; ;set_event.c: 206: if (event_cnt == 1) {
+"206
 [e $ ! == _event_cnt -> 1 `i 1113  ]
 {
-[; ;set_event.c: 206: write_24c02(addr++, hour / 10);
-"206
-[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> / _hour -> 10 `i `uc ]
-[; ;set_event.c: 207: write_24c02(addr++, hour % 10);
+[; ;set_event.c: 207: write_24c02(addr++, hour / 10);
 "207
-[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> % _hour -> 10 `i `uc ]
-[; ;set_event.c: 208: write_24c02(addr++, min / 10);
+[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> / _hour -> 10 `i `uc ]
+[; ;set_event.c: 208: write_24c02(addr++, hour % 10);
 "208
-[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> / _min -> 10 `i `uc ]
-[; ;set_event.c: 209: write_24c02(addr++, min % 10);
+[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> % _hour -> 10 `i `uc ]
+[; ;set_event.c: 209: write_24c02(addr++, min / 10);
 "209
-[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> % _min -> 10 `i `uc ]
-[; ;set_event.c: 210: write_24c02(addr++, am_pm);
+[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> / _min -> 10 `i `uc ]
+[; ;set_event.c: 210: write_24c02(addr++, min % 10);
 "210
-[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> _am_pm `uc ]
-[; ;set_event.c: 211: addr = 0x00;
+[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> % _min -> 10 `i `uc ]
+[; ;set_event.c: 211: write_24c02(addr++, am_pm);
 "211
-[e = _addr -> -> 0 `i `uc ]
+[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> _am_pm `uc ]
+[; ;set_event.c: 212: addr = 0x00;
 "212
-[v _arr `uc ~T0 @X0 -> 10 `i a ]
+[e = _addr -> -> 0 `i `uc ]
 "213
-[v _hr1 `i ~T0 @X0 1 a ]
-[; ;set_event.c: 212: char arr[10];
-[; ;set_event.c: 213: int hr1 = (read_24c02(addr) * 10) + read_24c02(addr+1);
-[e = _hr1 + * -> ( _read_24c02 (1 _addr `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 1 `i `uc `i ]
+[v _arr `uc ~T0 @X0 -> 10 `i a ]
 "214
-[v _mn1 `i ~T0 @X0 1 a ]
-[; ;set_event.c: 214: int mn1 = (read_24c02(addr+2) * 10) + read_24c02(addr+3);
-[e = _mn1 + * -> ( _read_24c02 (1 -> + -> _addr `i -> 2 `i `uc `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 3 `i `uc `i ]
+[v _hr1 `i ~T0 @X0 1 a ]
+[; ;set_event.c: 213: char arr[10];
+[; ;set_event.c: 214: int hr1 = (read_24c02(addr) * 10) + read_24c02(addr+1);
+[e = _hr1 + * -> ( _read_24c02 (1 _addr `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 1 `i `uc `i ]
 "215
+[v _mn1 `i ~T0 @X0 1 a ]
+[; ;set_event.c: 215: int mn1 = (read_24c02(addr+2) * 10) + read_24c02(addr+3);
+[e = _mn1 + * -> ( _read_24c02 (1 -> + -> _addr `i -> 2 `i `uc `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 3 `i `uc `i ]
+"216
 [v _am_pm1 `i ~T0 @X0 1 a ]
-[; ;set_event.c: 215: int am_pm1 = read_24c02(addr+4);
+[; ;set_event.c: 216: int am_pm1 = read_24c02(addr+4);
 [e = _am_pm1 -> ( _read_24c02 (1 -> + -> _addr `i -> 4 `i `uc `i ]
-[; ;set_event.c: 222: arr[0] = '0' + (hr1 / 10);
-"222
-[e = *U + &U _arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> / _hr1 -> 10 `i `ui `uc ]
-[; ;set_event.c: 223: arr[1] = '0' + (hr1 % 10);
+[; ;set_event.c: 223: arr[0] = '0' + (hr1 / 10);
 "223
-[e = *U + &U _arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> % _hr1 -> 10 `i `ui `uc ]
-[; ;set_event.c: 224: arr[2] = ':';
+[e = *U + &U _arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> / _hr1 -> 10 `i `ui `uc ]
+[; ;set_event.c: 224: arr[1] = '0' + (hr1 % 10);
 "224
+[e = *U + &U _arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> % _hr1 -> 10 `i `ui `uc ]
+[; ;set_event.c: 225: arr[2] = ':';
+"225
 [e = *U + &U _arr * -> -> -> 2 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 58 `ui `uc ]
-[; ;set_event.c: 226: arr[3] = '0' + (mn1 / 10);
-"226
-[e = *U + &U _arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> / _mn1 -> 10 `i `ui `uc ]
-[; ;set_event.c: 227: arr[4] = '0' + (mn1 % 10);
+[; ;set_event.c: 227: arr[3] = '0' + (mn1 / 10);
 "227
-[e = *U + &U _arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> % _mn1 -> 10 `i `ui `uc ]
-[; ;set_event.c: 228: arr[5] = ' ';
+[e = *U + &U _arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> / _mn1 -> 10 `i `ui `uc ]
+[; ;set_event.c: 228: arr[4] = '0' + (mn1 % 10);
 "228
+[e = *U + &U _arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> % _mn1 -> 10 `i `ui `uc ]
+[; ;set_event.c: 229: arr[5] = ' ';
+"229
 [e = *U + &U _arr * -> -> -> 5 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 32 `ui `uc ]
-[; ;set_event.c: 230: if (am_pm1) {
-"230
+[; ;set_event.c: 231: if (am_pm1) {
+"231
 [e $ ! != _am_pm1 -> 0 `i 1114  ]
 {
-[; ;set_event.c: 231: arr[6] = 'P';
-"231
-[e = *U + &U _arr * -> -> -> 6 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 80 `ui `uc ]
-[; ;set_event.c: 232: arr[7] = 'M';
+[; ;set_event.c: 232: arr[6] = 'P';
 "232
-[e = *U + &U _arr * -> -> -> 7 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 77 `ui `uc ]
+[e = *U + &U _arr * -> -> -> 6 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 80 `ui `uc ]
+[; ;set_event.c: 233: arr[7] = 'M';
 "233
+[e = *U + &U _arr * -> -> -> 7 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 77 `ui `uc ]
+"234
 }
-[; ;set_event.c: 233: } else {
+[; ;set_event.c: 234: } else {
 [e $U 1115  ]
 [e :U 1114 ]
 {
-[; ;set_event.c: 234: arr[6] = 'P';
-"234
-[e = *U + &U _arr * -> -> -> 6 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 80 `ui `uc ]
-[; ;set_event.c: 235: arr[7] = 'M';
+[; ;set_event.c: 235: arr[6] = 'P';
 "235
-[e = *U + &U _arr * -> -> -> 7 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 77 `ui `uc ]
+[e = *U + &U _arr * -> -> -> 6 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 80 `ui `uc ]
+[; ;set_event.c: 236: arr[7] = 'M';
 "236
+[e = *U + &U _arr * -> -> -> 7 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 77 `ui `uc ]
+"237
 }
 [e :U 1115 ]
-[; ;set_event.c: 236: }
-[; ;set_event.c: 237: arr[8] = '\0';
-"237
-[e = *U + &U _arr * -> -> -> 8 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 0 `ui `uc ]
-[; ;set_event.c: 238: clcd_print("                ", (0x80 + (0)));
+[; ;set_event.c: 237: }
+[; ;set_event.c: 238: arr[8] = '\0';
 "238
-[e ( _clcd_print (2 , :s 10C -> + -> 128 `i -> 0 `i `uc ]
-[; ;set_event.c: 239: clcd_print("                ", (0xC0 + (0)));
+[e = *U + &U _arr * -> -> -> 8 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 0 `ui `uc ]
+[; ;set_event.c: 239: clcd_print("                ", (0x80 + (0)));
 "239
-[e ( _clcd_print (2 , :s 11C -> + -> 192 `i -> 0 `i `uc ]
-[; ;set_event.c: 240: clcd_print("# STORED EVENTS..", (0x80 + (0)));
+[e ( _clcd_print (2 , :s 10C -> + -> 128 `i -> 0 `i `uc ]
+[; ;set_event.c: 240: clcd_print("                ", (0xC0 + (0)));
 "240
-[e ( _clcd_print (2 , :s 12C -> + -> 128 `i -> 0 `i `uc ]
-[; ;set_event.c: 241: clcd_print(arr,(0xC0 + (0)));
+[e ( _clcd_print (2 , :s 11C -> + -> 192 `i -> 0 `i `uc ]
+[; ;set_event.c: 241: clcd_print("# STORED EVENTS..", (0x80 + (0)));
 "241
-[e ( _clcd_print (2 , -> &U _arr `*Cuc -> + -> 192 `i -> 0 `i `uc ]
-[; ;set_event.c: 242: for(int i = 0; i< 5000;i++);
+[e ( _clcd_print (2 , :s 12C -> + -> 128 `i -> 0 `i `uc ]
+[; ;set_event.c: 242: clcd_print(arr,(0xC0 + (0)));
 "242
+[e ( _clcd_print (2 , -> &U _arr `*Cuc -> + -> 192 `i -> 0 `i `uc ]
+[; ;set_event.c: 243: for(int i = 0; i< 50000;i++);
+"243
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 5000 `i 1116  ]
+[e $ < -> _i `l -> 50000 `l 1116  ]
 [e $U 1117  ]
 [e :U 1116 ]
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 5000 `i 1116  ]
+[e $ < -> _i `l -> 50000 `l 1116  ]
 [e :U 1117 ]
 }
-[; ;set_event.c: 243: screen_flag = 4;
-"243
-[e = _screen_flag -> -> 4 `i `uc ]
-"246
-}
-[; ;set_event.c: 246: }
-[e $U 1119  ]
 "247
-[e :U 1113 ]
-[; ;set_event.c: 247: else {
-{
-[; ;set_event.c: 248: for (i = 0; i < event_cnt; i++) {
+}
+[; ;set_event.c: 247: }
+[e $U 1119  ]
 "248
+[e :U 1113 ]
+[; ;set_event.c: 248: else {
+{
+[; ;set_event.c: 249: for (i = 0; i < event_cnt; i++) {
+"249
 {
 [e = _i -> 0 `i ]
 [e $U 1123  ]
 [e :U 1120 ]
 {
-[; ;set_event.c: 249: addr = i * 5;
-"249
-[e = _addr -> * _i -> 5 `i `uc ]
-[; ;set_event.c: 250: a_p = read_24c02(addr + 4);
+[; ;set_event.c: 250: addr = i * 5;
 "250
-[e = _a_p -> ( _read_24c02 (1 -> + -> _addr `i -> 4 `i `uc `i ]
-[; ;set_event.c: 251: hr = (read_24c02(addr) * 10) + read_24c02(addr + 1);
+[e = _addr -> * _i -> 5 `i `uc ]
+[; ;set_event.c: 251: a_p = read_24c02(addr + 4);
 "251
-[e = _hr + * -> ( _read_24c02 (1 _addr `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 1 `i `uc `i ]
-[; ;set_event.c: 252: mn = (read_24c02(addr + 2) * 10) + read_24c02(addr + 3);
+[e = _a_p -> ( _read_24c02 (1 -> + -> _addr `i -> 4 `i `uc `i ]
+[; ;set_event.c: 252: hr = (read_24c02(addr) * 10) + read_24c02(addr + 1);
 "252
+[e = _hr + * -> ( _read_24c02 (1 _addr `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 1 `i `uc `i ]
+[; ;set_event.c: 253: mn = (read_24c02(addr + 2) * 10) + read_24c02(addr + 3);
+"253
 [e = _mn + * -> ( _read_24c02 (1 -> + -> _addr `i -> 2 `i `uc `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 3 `i `uc `i ]
-[; ;set_event.c: 254: if (am_pm > a_p) {
-"254
+[; ;set_event.c: 255: if (am_pm > a_p) {
+"255
 [e $ ! > _am_pm _a_p 1124  ]
 {
-[; ;set_event.c: 255: continue;
-"255
-[e $U 1122  ]
+[; ;set_event.c: 256: continue;
 "256
+[e $U 1122  ]
+"257
 }
-[; ;set_event.c: 256: } else if (am_pm < a_p) {
+[; ;set_event.c: 257: } else if (am_pm < a_p) {
 [e $U 1125  ]
 [e :U 1124 ]
 [e $ ! < _am_pm _a_p 1126  ]
 {
-[; ;set_event.c: 257: shift_store_event(i, addr, event_cnt);
-"257
-[e ( _shift_store_event (3 , , _i -> _addr `i _event_cnt ]
-[; ;set_event.c: 258: break;
+[; ;set_event.c: 258: shift_store_event(i, addr, event_cnt);
 "258
-[e $U 1121  ]
+[e ( _shift_store_event (3 , , _i -> _addr `i _event_cnt ]
+[; ;set_event.c: 259: break;
 "259
+[e $U 1121  ]
+"260
 }
-[; ;set_event.c: 259: } else {
+[; ;set_event.c: 260: } else {
 [e $U 1127  ]
 [e :U 1126 ]
 {
-[; ;set_event.c: 260: if (hour > hr) {
-"260
+[; ;set_event.c: 261: if (hour > hr) {
+"261
 [e $ ! > _hour _hr 1128  ]
 {
-[; ;set_event.c: 261: continue;
-"261
-[e $U 1122  ]
+[; ;set_event.c: 262: continue;
 "262
+[e $U 1122  ]
+"263
 }
-[; ;set_event.c: 262: } else if (hour < hr) {
+[; ;set_event.c: 263: } else if (hour < hr) {
 [e $U 1129  ]
 [e :U 1128 ]
 [e $ ! < _hour _hr 1130  ]
 {
-[; ;set_event.c: 263: shift_store_event(i, addr, event_cnt);
-"263
-[e ( _shift_store_event (3 , , _i -> _addr `i _event_cnt ]
-[; ;set_event.c: 264: break;
+[; ;set_event.c: 264: shift_store_event(i, addr, event_cnt);
 "264
-[e $U 1121  ]
+[e ( _shift_store_event (3 , , _i -> _addr `i _event_cnt ]
+[; ;set_event.c: 265: break;
 "265
+[e $U 1121  ]
+"266
 }
-[; ;set_event.c: 265: } else {
+[; ;set_event.c: 266: } else {
 [e $U 1131  ]
 [e :U 1130 ]
 {
-[; ;set_event.c: 266: if (min > mn) {
-"266
+[; ;set_event.c: 267: if (min > mn) {
+"267
 [e $ ! > _min _mn 1132  ]
 {
-[; ;set_event.c: 267: continue;
-"267
-[e $U 1122  ]
+[; ;set_event.c: 268: continue;
 "268
+[e $U 1122  ]
+"269
 }
-[; ;set_event.c: 268: } else if (min < mn) {
+[; ;set_event.c: 269: } else if (min < mn) {
 [e $U 1133  ]
 [e :U 1132 ]
 [e $ ! < _min _mn 1134  ]
 {
-[; ;set_event.c: 269: shift_store_event(i, addr, event_cnt);
-"269
-[e ( _shift_store_event (3 , , _i -> _addr `i _event_cnt ]
-[; ;set_event.c: 270: break;
+[; ;set_event.c: 270: shift_store_event(i, addr, event_cnt);
 "270
-[e $U 1121  ]
+[e ( _shift_store_event (3 , , _i -> _addr `i _event_cnt ]
+[; ;set_event.c: 271: break;
 "271
+[e $U 1121  ]
+"272
 }
-[; ;set_event.c: 271: } else {
+[; ;set_event.c: 272: } else {
 [e $U 1135  ]
 [e :U 1134 ]
 {
-[; ;set_event.c: 272: flag = 0;
-"272
-[e = _flag -> 0 `i ]
-[; ;set_event.c: 273: clcd_print("Event already", (0x80 + (0)));
+[; ;set_event.c: 273: flag = 0;
 "273
-[e ( _clcd_print (2 , :s 13C -> + -> 128 `i -> 0 `i `uc ]
-[; ;set_event.c: 274: clcd_print("Existed....    ", (0xC0 + (0)));
+[e = _flag -> 0 `i ]
+[; ;set_event.c: 274: clcd_print("Event already", (0x80 + (0)));
 "274
-[e ( _clcd_print (2 , :s 14C -> + -> 192 `i -> 0 `i `uc ]
-[; ;set_event.c: 275: for (int i = 0; i < 5000; i++);
+[e ( _clcd_print (2 , :s 13C -> + -> 128 `i -> 0 `i `uc ]
+[; ;set_event.c: 275: clcd_print("Existed....    ", (0xC0 + (0)));
 "275
+[e ( _clcd_print (2 , :s 14C -> + -> 192 `i -> 0 `i `uc ]
+[; ;set_event.c: 276: for (int i = 0; i < 5000; i++);
+"276
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -12191,165 +12191,165 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < _i -> 5000 `i 1136  ]
 [e :U 1137 ]
 }
-[; ;set_event.c: 276: break;
-"276
-[e $U 1121  ]
+[; ;set_event.c: 277: break;
 "277
+[e $U 1121  ]
+"278
 }
 [e :U 1135 ]
 [e :U 1133 ]
-"278
+"279
 }
 [e :U 1131 ]
 [e :U 1129 ]
-"279
+"280
 }
 [e :U 1127 ]
 [e :U 1125 ]
-"280
+"281
 }
-"248
+"249
 [e :U 1122 ]
 [e ++ _i -> 1 `i ]
 [e :U 1123 ]
 [e $ < _i _event_cnt 1120  ]
 [e :U 1121 ]
-"280
+"281
 }
-[; ;set_event.c: 277: }
 [; ;set_event.c: 278: }
 [; ;set_event.c: 279: }
 [; ;set_event.c: 280: }
-[; ;set_event.c: 282: if (flag) {
-"282
+[; ;set_event.c: 281: }
+[; ;set_event.c: 283: if (flag) {
+"283
 [e $ ! != _flag -> 0 `i 1139  ]
 {
-[; ;set_event.c: 283: addr = 5 * i;
-"283
-[e = _addr -> * -> 5 `i _i `uc ]
-[; ;set_event.c: 284: write_24c02(addr++, hour / 10);
+[; ;set_event.c: 284: addr = 5 * i;
 "284
-[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> / _hour -> 10 `i `uc ]
-[; ;set_event.c: 285: write_24c02(addr++, hour % 10);
-"285
-[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> % _hour -> 10 `i `uc ]
-[; ;set_event.c: 286: write_24c02(addr++, min / 10);
-"286
-[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> / _min -> 10 `i `uc ]
-[; ;set_event.c: 287: write_24c02(addr++, min % 10);
-"287
-[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> % _min -> 10 `i `uc ]
-[; ;set_event.c: 288: write_24c02(addr++, am_pm);
-"288
-[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> _am_pm `uc ]
-[; ;set_event.c: 289: clcd_print("Event stored...", (0x80 + (0)));
-"289
-[e ( _clcd_print (2 , :s 15C -> + -> 128 `i -> 0 `i `uc ]
-[; ;set_event.c: 290: addr = 5 * i;
-"290
 [e = _addr -> * -> 5 `i _i `uc ]
+[; ;set_event.c: 285: write_24c02(addr++, hour / 10);
+"285
+[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> / _hour -> 10 `i `uc ]
+[; ;set_event.c: 286: write_24c02(addr++, hour % 10);
+"286
+[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> % _hour -> 10 `i `uc ]
+[; ;set_event.c: 287: write_24c02(addr++, min / 10);
+"287
+[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> / _min -> 10 `i `uc ]
+[; ;set_event.c: 288: write_24c02(addr++, min % 10);
+"288
+[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> % _min -> 10 `i `uc ]
+[; ;set_event.c: 289: write_24c02(addr++, am_pm);
+"289
+[e ( _write_24c02 (2 , ++ _addr -> -> 1 `i `uc -> _am_pm `uc ]
+[; ;set_event.c: 290: clcd_print("Event stored...", (0x80 + (0)));
+"290
+[e ( _clcd_print (2 , :s 15C -> + -> 128 `i -> 0 `i `uc ]
+[; ;set_event.c: 291: addr = 5 * i;
 "291
-[v _arr `uc ~T0 @X0 -> 10 `i a ]
+[e = _addr -> * -> 5 `i _i `uc ]
 "292
-[v _hr1 `i ~T0 @X0 1 a ]
-[; ;set_event.c: 291: char arr[10];
-[; ;set_event.c: 292: int hr1 = (read_24c02(addr) * 10) + read_24c02(addr+1);
-[e = _hr1 + * -> ( _read_24c02 (1 _addr `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 1 `i `uc `i ]
+[v _arr `uc ~T0 @X0 -> 10 `i a ]
 "293
-[v _mn1 `i ~T0 @X0 1 a ]
-[; ;set_event.c: 293: int mn1 = (read_24c02(addr+2) * 10) + read_24c02(addr+3);
-[e = _mn1 + * -> ( _read_24c02 (1 -> + -> _addr `i -> 2 `i `uc `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 3 `i `uc `i ]
+[v _hr1 `i ~T0 @X0 1 a ]
+[; ;set_event.c: 292: char arr[10];
+[; ;set_event.c: 293: int hr1 = (read_24c02(addr) * 10) + read_24c02(addr+1);
+[e = _hr1 + * -> ( _read_24c02 (1 _addr `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 1 `i `uc `i ]
 "294
+[v _mn1 `i ~T0 @X0 1 a ]
+[; ;set_event.c: 294: int mn1 = (read_24c02(addr+2) * 10) + read_24c02(addr+3);
+[e = _mn1 + * -> ( _read_24c02 (1 -> + -> _addr `i -> 2 `i `uc `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr `i -> 3 `i `uc `i ]
+"295
 [v _am_pm1 `i ~T0 @X0 1 a ]
-[; ;set_event.c: 294: int am_pm1 = read_24c02(addr+4);
+[; ;set_event.c: 295: int am_pm1 = read_24c02(addr+4);
 [e = _am_pm1 -> ( _read_24c02 (1 -> + -> _addr `i -> 4 `i `uc `i ]
-[; ;set_event.c: 301: arr[0] = '0' + (hr1 / 10);
-"301
-[e = *U + &U _arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> / _hr1 -> 10 `i `ui `uc ]
-[; ;set_event.c: 302: arr[1] = '0' + (hr1 % 10);
+[; ;set_event.c: 302: arr[0] = '0' + (hr1 / 10);
 "302
-[e = *U + &U _arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> % _hr1 -> 10 `i `ui `uc ]
-[; ;set_event.c: 303: arr[2] = ':';
+[e = *U + &U _arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> / _hr1 -> 10 `i `ui `uc ]
+[; ;set_event.c: 303: arr[1] = '0' + (hr1 % 10);
 "303
+[e = *U + &U _arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> % _hr1 -> 10 `i `ui `uc ]
+[; ;set_event.c: 304: arr[2] = ':';
+"304
 [e = *U + &U _arr * -> -> -> 2 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 58 `ui `uc ]
-[; ;set_event.c: 305: arr[3] = '0' + (mn1 / 10);
-"305
-[e = *U + &U _arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> / _mn1 -> 10 `i `ui `uc ]
-[; ;set_event.c: 306: arr[4] = '0' + (mn1 % 10);
+[; ;set_event.c: 306: arr[3] = '0' + (mn1 / 10);
 "306
-[e = *U + &U _arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> % _mn1 -> 10 `i `ui `uc ]
-[; ;set_event.c: 307: arr[5] = ' ';
+[e = *U + &U _arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> / _mn1 -> 10 `i `ui `uc ]
+[; ;set_event.c: 307: arr[4] = '0' + (mn1 % 10);
 "307
+[e = *U + &U _arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _arr `ui `ux -> + -> 48 `ui -> % _mn1 -> 10 `i `ui `uc ]
+[; ;set_event.c: 308: arr[5] = ' ';
+"308
 [e = *U + &U _arr * -> -> -> 5 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 32 `ui `uc ]
-[; ;set_event.c: 309: if (am_pm1) {
-"309
+[; ;set_event.c: 310: if (am_pm1) {
+"310
 [e $ ! != _am_pm1 -> 0 `i 1140  ]
 {
-[; ;set_event.c: 310: arr[6] = 'P';
-"310
-[e = *U + &U _arr * -> -> -> 6 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 80 `ui `uc ]
-[; ;set_event.c: 311: arr[7] = 'M';
+[; ;set_event.c: 311: arr[6] = 'P';
 "311
-[e = *U + &U _arr * -> -> -> 7 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 77 `ui `uc ]
+[e = *U + &U _arr * -> -> -> 6 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 80 `ui `uc ]
+[; ;set_event.c: 312: arr[7] = 'M';
 "312
+[e = *U + &U _arr * -> -> -> 7 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 77 `ui `uc ]
+"313
 }
-[; ;set_event.c: 312: } else {
+[; ;set_event.c: 313: } else {
 [e $U 1141  ]
 [e :U 1140 ]
 {
-[; ;set_event.c: 313: arr[6] = 'P';
-"313
-[e = *U + &U _arr * -> -> -> 6 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 80 `ui `uc ]
-[; ;set_event.c: 314: arr[7] = 'M';
+[; ;set_event.c: 314: arr[6] = 'P';
 "314
-[e = *U + &U _arr * -> -> -> 7 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 77 `ui `uc ]
+[e = *U + &U _arr * -> -> -> 6 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 80 `ui `uc ]
+[; ;set_event.c: 315: arr[7] = 'M';
 "315
+[e = *U + &U _arr * -> -> -> 7 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 77 `ui `uc ]
+"316
 }
 [e :U 1141 ]
-[; ;set_event.c: 315: }
-[; ;set_event.c: 316: arr[8] = '\0';
-"316
-[e = *U + &U _arr * -> -> -> 8 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 0 `ui `uc ]
-[; ;set_event.c: 317: clcd_print("                ", (0x80 + (0)));
+[; ;set_event.c: 316: }
+[; ;set_event.c: 317: arr[8] = '\0';
 "317
-[e ( _clcd_print (2 , :s 16C -> + -> 128 `i -> 0 `i `uc ]
-[; ;set_event.c: 318: clcd_print("                ", (0xC0 + (0)));
+[e = *U + &U _arr * -> -> -> 8 `i `ui `ux -> -> # *U &U _arr `ui `ux -> -> 0 `ui `uc ]
+[; ;set_event.c: 318: clcd_print("                ", (0x80 + (0)));
 "318
-[e ( _clcd_print (2 , :s 17C -> + -> 192 `i -> 0 `i `uc ]
-[; ;set_event.c: 319: clcd_print("# STORED EVENTS..", (0x80 + (0)));
+[e ( _clcd_print (2 , :s 16C -> + -> 128 `i -> 0 `i `uc ]
+[; ;set_event.c: 319: clcd_print("                ", (0xC0 + (0)));
 "319
-[e ( _clcd_print (2 , :s 18C -> + -> 128 `i -> 0 `i `uc ]
-[; ;set_event.c: 320: clcd_print(arr,(0xC0 + (0)));
+[e ( _clcd_print (2 , :s 17C -> + -> 192 `i -> 0 `i `uc ]
+[; ;set_event.c: 320: clcd_print("# STORED EVENTS..", (0x80 + (0)));
 "320
-[e ( _clcd_print (2 , -> &U _arr `*Cuc -> + -> 192 `i -> 0 `i `uc ]
-[; ;set_event.c: 321: for (int j = 0; j < 5000; j++);
+[e ( _clcd_print (2 , :s 18C -> + -> 128 `i -> 0 `i `uc ]
+[; ;set_event.c: 321: clcd_print(arr,(0xC0 + (0)));
 "321
+[e ( _clcd_print (2 , -> &U _arr `*Cuc -> + -> 192 `i -> 0 `i `uc ]
+[; ;set_event.c: 322: for (int j = 0; j < 50000; j++);
+"322
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-[e $ < _j -> 5000 `i 1142  ]
+[e $ < -> _j `l -> 50000 `l 1142  ]
 [e $U 1143  ]
 [e :U 1142 ]
 [e ++ _j -> 1 `i ]
-[e $ < _j -> 5000 `i 1142  ]
+[e $ < -> _j `l -> 50000 `l 1142  ]
 [e :U 1143 ]
 }
-"322
+"324
 }
 [e :U 1139 ]
-"323
+"325
 }
 [e :U 1119 ]
-[; ;set_event.c: 322: }
-[; ;set_event.c: 323: }
 [; ;set_event.c: 324: }
-"324
+[; ;set_event.c: 325: }
+[; ;set_event.c: 326: }
+"326
 [e :UE 1112 ]
 }
-"326
+"328
 [v _shift_store_event `(v ~T0 @X0 1 ef3`i`i`i ]
 {
-[; ;set_event.c: 326: void shift_store_event(int i, int addr, int event_count) {
+[; ;set_event.c: 328: void shift_store_event(int i, int addr, int event_count) {
 [e :U _shift_store_event ]
 [v _i `i ~T0 @X0 1 r1 ]
 [v _addr `i ~T0 @X0 1 r2 ]
@@ -12357,57 +12357,57 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [v _hr `i ~T0 @X0 1 a ]
 [v _mn `i ~T0 @X0 1 a ]
-"327
+"329
 [v _a_p `i ~T0 @X0 1 a ]
-[; ;set_event.c: 327: int hr, mn, a_p;
-[; ;set_event.c: 328: for (int j = event_count; j > i; j--) {
-"328
+[; ;set_event.c: 329: int hr, mn, a_p;
+[; ;set_event.c: 330: for (int j = event_count; j > i; j--) {
+"330
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j _event_count ]
 [e $U 1149  ]
 [e :U 1146 ]
 {
-"329
-[v _addr1 `uc ~T0 @X0 1 a ]
-[; ;set_event.c: 329: char addr1 = 5 * (j - 1);
-[e = _addr1 -> * -> 5 `i - _j -> 1 `i `uc ]
-[; ;set_event.c: 330: hr = (read_24c02(addr1) * 10) + read_24c02(addr1 + 1);
-"330
-[e = _hr + * -> ( _read_24c02 (1 _addr1 `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr1 `i -> 1 `i `uc `i ]
-[; ;set_event.c: 331: mn = (read_24c02(addr1 + 2) * 10) + read_24c02(addr1 + 3);
 "331
-[e = _mn + * -> ( _read_24c02 (1 -> + -> _addr1 `i -> 2 `i `uc `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr1 `i -> 3 `i `uc `i ]
-[; ;set_event.c: 332: a_p = read_24c02(addr1 + 4);
+[v _addr1 `uc ~T0 @X0 1 a ]
+[; ;set_event.c: 331: char addr1 = 5 * (j - 1);
+[e = _addr1 -> * -> 5 `i - _j -> 1 `i `uc ]
+[; ;set_event.c: 332: hr = (read_24c02(addr1) * 10) + read_24c02(addr1 + 1);
 "332
-[e = _a_p -> ( _read_24c02 (1 -> + -> _addr1 `i -> 4 `i `uc `i ]
-[; ;set_event.c: 334: write_24c02(addr1, hr / 10);
+[e = _hr + * -> ( _read_24c02 (1 _addr1 `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr1 `i -> 1 `i `uc `i ]
+[; ;set_event.c: 333: mn = (read_24c02(addr1 + 2) * 10) + read_24c02(addr1 + 3);
+"333
+[e = _mn + * -> ( _read_24c02 (1 -> + -> _addr1 `i -> 2 `i `uc `i -> 10 `i -> ( _read_24c02 (1 -> + -> _addr1 `i -> 3 `i `uc `i ]
+[; ;set_event.c: 334: a_p = read_24c02(addr1 + 4);
 "334
-[e ( _write_24c02 (2 , _addr1 -> / _hr -> 10 `i `uc ]
-[; ;set_event.c: 335: write_24c02(addr1 + 1, hr % 10);
-"335
-[e ( _write_24c02 (2 , -> + -> _addr1 `i -> 1 `i `uc -> % _hr -> 10 `i `uc ]
-[; ;set_event.c: 336: write_24c02(addr1 + 2, mn / 10);
+[e = _a_p -> ( _read_24c02 (1 -> + -> _addr1 `i -> 4 `i `uc `i ]
+[; ;set_event.c: 336: write_24c02(addr1, hr / 10);
 "336
-[e ( _write_24c02 (2 , -> + -> _addr1 `i -> 2 `i `uc -> / _mn -> 10 `i `uc ]
-[; ;set_event.c: 337: write_24c02(addr1 + 3, mn % 10);
+[e ( _write_24c02 (2 , _addr1 -> / _hr -> 10 `i `uc ]
+[; ;set_event.c: 337: write_24c02(addr1 + 1, hr % 10);
 "337
-[e ( _write_24c02 (2 , -> + -> _addr1 `i -> 3 `i `uc -> % _mn -> 10 `i `uc ]
-[; ;set_event.c: 338: write_24c02(addr1 + 4, a_p);
+[e ( _write_24c02 (2 , -> + -> _addr1 `i -> 1 `i `uc -> % _hr -> 10 `i `uc ]
+[; ;set_event.c: 338: write_24c02(addr1 + 2, mn / 10);
 "338
-[e ( _write_24c02 (2 , -> + -> _addr1 `i -> 4 `i `uc -> _a_p `uc ]
+[e ( _write_24c02 (2 , -> + -> _addr1 `i -> 2 `i `uc -> / _mn -> 10 `i `uc ]
+[; ;set_event.c: 339: write_24c02(addr1 + 3, mn % 10);
 "339
+[e ( _write_24c02 (2 , -> + -> _addr1 `i -> 3 `i `uc -> % _mn -> 10 `i `uc ]
+[; ;set_event.c: 340: write_24c02(addr1 + 4, a_p);
+"340
+[e ( _write_24c02 (2 , -> + -> _addr1 `i -> 4 `i `uc -> _a_p `uc ]
+"341
 }
-"328
+"330
 [e -- _j -> 1 `i ]
 [e :U 1149 ]
 [e $ > _j _i 1146  ]
 [e :U 1147 ]
-"339
+"341
 }
-[; ;set_event.c: 339: }
-[; ;set_event.c: 340: }
-"340
+[; ;set_event.c: 341: }
+[; ;set_event.c: 342: }
+"342
 [e :UE 1145 ]
 }
 [a 13C 69 118 101 110 116 32 97 108 114 101 97 100 121 0 ]

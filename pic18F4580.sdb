@@ -97,9 +97,9 @@
 [v _set_date set_date `(v  1 e 1 0 ]
 "19 C:\Users\WINDOWS\MPLABXProjects\DIGITAL_ALARM_CLOCK_Vasantha.X\set_event.c
 [v _set_events set_events `(v  1 e 1 0 ]
-"199
+"200
 [v _store_events store_events `(v  1 e 1 0 ]
-"326
+"328
 [v _shift_store_event shift_store_event `(v  1 e 1 0 ]
 "22 C:\Users\WINDOWS\MPLABXProjects\DIGITAL_ALARM_CLOCK_Vasantha.X\set_time.c
 [v _set_time set_time `(v  1 e 1 0 ]
@@ -350,72 +350,74 @@
 "22 C:\Users\WINDOWS\MPLABXProjects\DIGITAL_ALARM_CLOCK_Vasantha.X\set_time.c
 [v _set_time set_time `(v  1 e 1 0 ]
 {
-"145
+"138
+[v set_time@j j `i  1 a 2 16 ]
+"146
 } 0
 "19 C:\Users\WINDOWS\MPLABXProjects\DIGITAL_ALARM_CLOCK_Vasantha.X\set_event.c
 [v _set_events set_events `(v  1 e 1 0 ]
 {
-"107
+"108
 [v set_events@i i `i  1 a 2 43 ]
-"114
+"115
 } 0
-"199
+"200
 [v _store_events store_events `(v  1 e 1 0 ]
 {
-"275
-[v store_events@i_298 i `i  1 a 2 40 ]
-"321
-[v store_events@j j `i  1 a 2 42 ]
-"291
-[v store_events@arr_300 arr `[10]uc  1 a 10 12 ]
-"293
-[v store_events@mn1_302 mn1 `i  1 a 2 36 ]
+"276
+[v store_events@i_298 i `i  1 a 2 42 ]
+"322
+[v store_events@j j `i  1 a 2 2 ]
 "292
-[v store_events@hr1_301 hr1 `i  1 a 2 34 ]
+[v store_events@arr_300 arr `[10]uc  1 a 10 16 ]
 "294
-[v store_events@am_pm1_303 am_pm1 `i  1 a 2 0 ]
-"242
-[v store_events@i_295 i `i  1 a 2 38 ]
-"212
-[v store_events@arr arr `[10]uc  1 a 10 2 ]
-"214
-[v store_events@mn1 mn1 `i  1 a 2 32 ]
+[v store_events@mn1_302 mn1 `i  1 a 2 40 ]
+"293
+[v store_events@hr1_301 hr1 `i  1 a 2 38 ]
+"295
+[v store_events@am_pm1_303 am_pm1 `i  1 a 2 4 ]
+"243
+[v store_events@i_295 i `i  1 a 2 0 ]
 "213
-[v store_events@hr1 hr1 `i  1 a 2 30 ]
-"203
+[v store_events@arr arr `[10]uc  1 a 10 6 ]
+"215
+[v store_events@mn1 mn1 `i  1 a 2 36 ]
+"214
+[v store_events@hr1 hr1 `i  1 a 2 34 ]
+"204
 [v store_events@i i `i  1 a 2 44 ]
-"201
-[v store_events@mn mn `i  1 a 2 28 ]
-[v store_events@hr hr `i  1 a 2 26 ]
-[v store_events@a_p a_p `i  1 a 2 24 ]
 "202
-[v store_events@flag flag `i  1 a 2 22 ]
-"200
+[v store_events@mn mn `i  1 a 2 32 ]
+[v store_events@hr hr `i  1 a 2 30 ]
+[v store_events@a_p a_p `i  1 a 2 28 ]
+"203
+[v store_events@flag flag `i  1 a 2 26 ]
+"201
 [v store_events@addr addr `uc  1 a 1 46 ]
-"199
+"200
 [v store_events@event_cnt event_cnt `i  1 p 2 31 ]
 [v store_events@hour hour `i  1 p 2 33 ]
 [v store_events@min min `i  1 p 2 35 ]
 [v store_events@am_pm am_pm `i  1 p 2 37 ]
-"324
-} 0
 "326
+} 0
+"328
 [v _shift_store_event shift_store_event `(v  1 e 1 0 ]
 {
-"329
+"331
 [v shift_store_event@addr1 addr1 `uc  1 a 1 30 ]
-"328
+"330
 [v shift_store_event@j j `i  1 a 2 28 ]
-"326
+"328
 [v shift_store_event@mn mn `i  1 a 2 26 ]
 [v shift_store_event@hr hr `i  1 a 2 24 ]
-"327
+"329
 [v shift_store_event@a_p a_p `i  1 a 2 22 ]
-"326
+"328
 [v shift_store_event@i i `i  1 p 2 12 ]
 [v shift_store_event@addr addr `i  1 p 2 14 ]
 [v shift_store_event@event_count event_count `i  1 p 2 16 ]
-"340
+"342
 } 0
 "6 C:\Users\WINDOWS\MPLABXProjects\DIGITAL_ALARM_CLOCK_Vasantha.X\eeprom.c
 [v _write_24c02 write_24c02 `(v  1 e 1 0 ]

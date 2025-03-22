@@ -18312,6 +18312,7 @@ clcd_putch(' ', (0xC0 + (5)));
 
 if (key == 4) {
 if (event_cnt < 40) {
+screen_flag = 4;
 event_cnt++;
 store_events(event_cnt, hr, mn, am_pm);
 screen_flag = 4;
@@ -18327,7 +18328,7 @@ screen_flag = 4;
 }
 }
 
-# 199
+# 200
 void store_events(int event_cnt, int hour, int min, int am_pm) {
 char addr = 0x00;
 int a_p, hr, mn;
@@ -18346,7 +18347,7 @@ int hr1 = (read_24c02(addr) * 10) + read_24c02(addr+1);
 int mn1 = (read_24c02(addr+2) * 10) + read_24c02(addr+3);
 int am_pm1 = read_24c02(addr+4);
 
-# 222
+# 223
 arr[0] = '0' + (hr1 / 10);
 arr[1] = '0' + (hr1 % 10);
 arr[2] = ':';
@@ -18367,8 +18368,8 @@ clcd_print("                ", (0x80 + (0)));
 clcd_print("                ", (0xC0 + (0)));
 clcd_print("# STORED EVENTS..", (0x80 + (0)));
 clcd_print(arr,(0xC0 + (0)));
-for(int i = 0; i< 5000;i++);
-screen_flag = 4;
+for(int i = 0; i< 50000;i++);
+
 
 
 }
@@ -18421,7 +18422,7 @@ int hr1 = (read_24c02(addr) * 10) + read_24c02(addr+1);
 int mn1 = (read_24c02(addr+2) * 10) + read_24c02(addr+3);
 int am_pm1 = read_24c02(addr+4);
 
-# 301
+# 302
 arr[0] = '0' + (hr1 / 10);
 arr[1] = '0' + (hr1 % 10);
 arr[2] = ':';
@@ -18442,7 +18443,8 @@ clcd_print("                ", (0x80 + (0)));
 clcd_print("                ", (0xC0 + (0)));
 clcd_print("# STORED EVENTS..", (0x80 + (0)));
 clcd_print(arr,(0xC0 + (0)));
-for (int j = 0; j < 5000; j++);
+for (int j = 0; j < 50000; j++);
+
 }
 }
 }

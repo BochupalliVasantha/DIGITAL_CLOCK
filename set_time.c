@@ -135,6 +135,7 @@ void set_time() {
         clcd_print("                ",LINE1(0));
         clcd_print("                ",LINE2(0));
         clcd_print("Time is updated",LINE2(1));
+        for (int j = 0; j < 5000; j++);
          screen_flag = SET_TIME_DATE;
     }
 

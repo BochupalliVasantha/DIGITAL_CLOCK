@@ -18346,6 +18346,7 @@ write_ds1307(0x00, s_sec);
 clcd_print("                ",(0x80 + (0)));
 clcd_print("                ",(0xC0 + (0)));
 clcd_print("Time is updated",(0xC0 + (1)));
+for (int j = 0; j < 5000; j++);
 screen_flag = 3;
 }
 

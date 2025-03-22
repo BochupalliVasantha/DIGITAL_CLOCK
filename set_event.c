@@ -98,6 +98,7 @@ void set_events() {
     // Storing the event if MK_SW4 is pressed and going back to previous menu
     if (key == MK_SW4) {
         if (event_cnt < MAX_EVENTS) {
+            screen_flag = SET_VIEW_EVENTS;
             event_cnt++; // incrementing event count every time MK_SW4 is pressed
             store_events(event_cnt, hr, mn, am_pm); // calling storing event fun by passing required arguments
             screen_flag = SET_VIEW_EVENTS; // setting the screen flag to previous menu after storing the events
@@ -239,8 +240,8 @@ void store_events(int event_cnt, int hour, int min, int am_pm) {
             clcd_print("                ", LINE2(0));
             clcd_print("# STORED EVENTS..", LINE1(0));
             clcd_print(arr,LINE2(0));
-            for(int i = 0; i< 5000;i++);
-            screen_flag = SET_VIEW_EVENTS;
+            for(int i = 0; i< 50000;i++);
+            //screen_flag = SET_VIEW_EVENTS;
             
             
     }
@@ -314,11 +315,12 @@ void store_events(int event_cnt, int hour, int min, int am_pm) {
                 arr[7] = 'M';
             }
             arr[8] = '\0';
-        clcd_print("                ", LINE1(0));  // Clear previous text
+            clcd_print("                ", LINE1(0));  // Clear previous text
             clcd_print("                ", LINE2(0));
             clcd_print("# STORED EVENTS..", LINE1(0));
             clcd_print(arr,LINE2(0));
-            for (int j = 0; j < 5000; j++);
+            for (int j = 0; j < 50000; j++);
+            
         }
     }
 }

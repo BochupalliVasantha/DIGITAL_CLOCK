@@ -11961,26 +11961,38 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;set_time.c: 137: clcd_print("Time is updated",(0xC0 + (1)));
 "137
 [e ( _clcd_print (2 , :s 9C -> + -> 192 `i -> 1 `i `uc ]
-[; ;set_time.c: 138: screen_flag = 3;
+[; ;set_time.c: 138: for (int j = 0; j < 5000; j++);
 "138
-[e = _screen_flag -> -> 3 `i `uc ]
+{
+[v _j `i ~T0 @X0 1 a ]
+[e = _j -> 0 `i ]
+[e $ < _j -> 5000 `i 1115  ]
+[e $U 1116  ]
+[e :U 1115 ]
+[e ++ _j -> 1 `i ]
+[e $ < _j -> 5000 `i 1115  ]
+[e :U 1116 ]
+}
+[; ;set_time.c: 139: screen_flag = 3;
 "139
+[e = _screen_flag -> -> 3 `i `uc ]
+"140
 }
 [e :U 1114 ]
-[; ;set_time.c: 139: }
-[; ;set_time.c: 142: if (key == 5) {
-"142
-[e $ ! == -> _key `i -> 5 `i 1115  ]
-{
-[; ;set_time.c: 143: screen_flag = 3;
+[; ;set_time.c: 140: }
+[; ;set_time.c: 143: if (key == 5) {
 "143
-[e = _screen_flag -> -> 3 `i `uc ]
+[e $ ! == -> _key `i -> 5 `i 1118  ]
+{
+[; ;set_time.c: 144: screen_flag = 3;
 "144
-}
-[e :U 1115 ]
-[; ;set_time.c: 144: }
-[; ;set_time.c: 145: }
+[e = _screen_flag -> -> 3 `i `uc ]
 "145
+}
+[e :U 1118 ]
+[; ;set_time.c: 145: }
+[; ;set_time.c: 146: }
+"146
 [e :UE 1083 ]
 }
 [a 9C 84 105 109 101 32 105 115 32 117 112 100 97 116 101 100 0 ]
