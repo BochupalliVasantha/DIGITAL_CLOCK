@@ -1,0 +1,1 @@
+ main.d  main.p1:  main.c rtc.h clcd.h main.h i2c.h eeprom.h matrix_kepad.h timer0.h
